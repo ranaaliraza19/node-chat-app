@@ -12,9 +12,7 @@
 
 <body>
     <div class="chat">
-        <div id="sidebar" class="chat__sidebar">
-
-        </div>
+        <div id="sidebar" class="chat__sidebar"></div>
         <div class="chat__main">
             <div id="messages" class="chat__messages"></div>
 
@@ -29,23 +27,23 @@
     </div>
 
     <script id="message-template" type="text/html">
-                <div class="message">
-                    <p>
-                        <span class="message__name">{{username}}</span>
-                        <span class="message__meta">{{createdAt}}</span>
-                    </p>
-                    <p>{{message}}</p>
-                </div>
+        <div class="message">
+            <p>
+                <span class="message__name">{{username}}</span>
+                <span class="message__meta">{{createdAt}}</span>
+            </p>
+            <p>{{message}}</p>
+        </div>
     </script>
 
     <script id="location-message-template" type="text/html">
-                <div class="message">
-                    <p>
-                        <span class="message__name">{{username}}</span>
-                        <span class="message__meta">{{createdAt}}</span>
-                    </p>
-                    <p><a href="{{url}}" target="_blank">My current location</a></p>
-                </div>
+        <div class="message">
+            <p>
+                <span class="message__name">{{username}}</span>
+                <span class="message__meta">{{createdAt}}</span>
+            </p>
+            <p><a href="{{url}}" target="_blank">My current location</a></p>
+        </div>
     </script>
 
     <script id="sidebar-template" type="text/html">
@@ -53,7 +51,7 @@
         <h3 class="list-title">Users</h3>
         <ul class="users">
             {{#users}}
-                <li>{{username}}</li>
+            <li>{{username}}</li>
             {{/users}}
         </ul>
     </script>
@@ -63,6 +61,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chat.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then((registration) => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch((error) => {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+    </script>
 </body>
 
 </html>

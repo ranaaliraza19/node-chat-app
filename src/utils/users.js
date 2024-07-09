@@ -52,7 +52,7 @@ const getUsersInRoom = (room) => {
   return users.filter((user) => user.room === room);
 };
 
-module.exports = {
+export default {
   addUser,
   removeUser,
   getUser,
